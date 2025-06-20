@@ -20,6 +20,7 @@ except ImportError:
 from backup_tool.config import LOAD_CONFIG
 
 EMOJI_ENABLED = LOAD_CONFIG().get("EMOJI_ENABLED", False)
+LOGS_DIR = Path(LOAD_CONFIG().get("LOGS_DIR", "logs")).resolve()
 BASE_BACKUP = LOAD_CONFIG().get("BASE_BACKUP", "")
 PID_DIR = Path(LOAD_CONFIG().get("PID_DIR", "pid")).resolve()
 COLOR_ENABLED = LOAD_CONFIG().get("COLOR_ENABLED", "true").lower() in ("1", "true", "yes")
@@ -27,7 +28,7 @@ EXCLUDE_EXTENSIONS = LOAD_CONFIG().get("EXCLUDE_EXTENSIONS", "").split(",") if L
 MAX_FILE_SIZE_MB = int(LOAD_CONFIG().get("MAX_FILE_SIZE_MB", "100"))
 MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024
 
-log = setup_logger(Path("utils_logger"))
+GLOBAL_LOGGER = setup_logger(LOGS_DIR, "backup_cli")
 
 
 def find_igbackup_file_downtree(source_dir):
@@ -221,9 +222,9 @@ def create_test_environment(base_dir: Path):
     
     
     # Log creation success
-    log.info(f"Created test environment at {base_dir}")
-    log.info(f"Source: {source_dir}")
-    log.info(f"Backup: {backup_dir}")
+    GLOBAL_LOGGER.info(f"Created test environment at {base_dir}")
+    GLOBAL_LOGGER.info(f"Source: {source_dir}")
+    GLOBAL_LOGGER.info(f"Backup: {backup_dir}")
     
     return source_dir, backup_dir
 

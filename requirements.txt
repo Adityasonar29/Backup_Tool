@@ -1,0 +1,6 @@
+watchdog
+psutil
+plyer
+python-dotenv
+colorama
+rclone

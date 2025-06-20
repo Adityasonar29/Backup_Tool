@@ -20,8 +20,8 @@ except ImportError:
     notification = None
     
 
-
-log = setup_logger(Path("Tele_logger"))
+LOGS_DIR = Path(LOAD_CONFIG().get("LOGS_DIR", "logs")).resolve()
+GLOBAL_LOGGER = setup_logger(LOGS_DIR, "backup_cli")
 
 
 def send_notification(title: str, message: str):
