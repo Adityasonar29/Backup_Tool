@@ -29,10 +29,26 @@ Supports real-time incremental backups, snapshotting, exclusions, compression, c
    ```sh
    git clone https://github.com/Adityasonar29/Backup_Tool.git
    cd Backup_Tool
+   ```
+2. **Set up your environment:**
+
+   - Run the interactive setup script:
+     ```sh
+     python env_setup.py
+     ```
+
+     This will prompt you for only the necessary settings and create a `.env` file in the `backup_tool` directory.
+3. **Create and activate a virtual environment, then install requirements:**
+
+   ```sh
+   python -m venv .venv
+   .venv\Scripts\activate      # On Windows
+   # or
+   source .venv/bin/activate  # On Linux/macOS
+
    pip install -r requirements.txt
    ```
-2. **Edit your `.env` file** with your desired settings (see `.env` for examples).
-3. **Run the CLI:**
+4. **Run the CLI:**
 
    ```sh
    python backup_cli.py <command> [options]
@@ -43,6 +59,48 @@ Supports real-time incremental backups, snapshotting, exclusions, compression, c
    ```sh
    bin\backup.cmd <command> [options]
    ```
+
+---
+
+## Environment Configuration (`.env`)
+
+The `.env` file holds all configuration for your backup jobs and integrations.
+You can set it up interactively with `python env_setup.py` or edit it manually.
+
+**Example:**
+
+```ini
+BASE_BACKUP = D:/Backups/
+USER_DIR = C:/Users/yourname
+PID_DIR = USER_DIR/.backup_pids
+LOGS_DIR = BASE_BACKUP/logs
+GDRIVE_ENABLED = 'False'
+ONEDRIVE_ENABLED = 'True'
+RCLONE_REMOTE_GDRIVE = gdrive
+RCLONE_REMOTE_ONEDRIVE = onedrive
+GDRIVE_CREDENTIALS = ""
+ONEDRIVE_TOKEN = ""
+GDRIVE_CREDENTIALS_PATH = gdrive_credentials.json
+ONEDRIVE_TOKEN_PATH = onedrive_token.json
+IS_NOTIFY_ON = 'true'
+NOTIFY_MODE = telegram
+TELEGRAM_BOT_TOKEN = ""
+TELEGRAM_CHAT_ID = '123456'
+EMAIL_SMTP_SERVER = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USERNAME = 'user@gmail.com'
+EMAIL_PASSWORD = 'secret'
+EMAIL_TO = 'you@example.com'
+DEFAULT_EXCLUDE_FILENAME = ".igbackup"
+COMPRESS_THRESHOLD_DAYS = '7'
+RETENTION_DAYS = '30'
+EXCLUDE_EXTENSIONS = .mp4, .zip
+MAX_FILE_SIZE_MB = 5
+MIN_FREE_SPACE_MB = 10000
+EMOJI_ENABLED = 'False'
+COLOR_ENABLED = True
+BACKUP_DELAY = '45'
+```
 
 ---
 
@@ -164,4 +222,10 @@ MIT License
 
 ---
 
-**Author:** [Adityasonar29](https://github.com/Adityasonar29)
+## Feedback
+
+I am a new developer and there might be some errors or issues in my code.  
+If you find any bugs or have suggestions for improvement, please feel free to open an issue or contact me at [adityavispute29@gmail.com](mailto:adityavispute29@gmail.com).  
+Thank you for using
+
+---
